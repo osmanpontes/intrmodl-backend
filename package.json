@@ -19,6 +19,7 @@
     "joi": "^13.7.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
     "palin": "^2.2.0"
   },
   "devDependencies": {
