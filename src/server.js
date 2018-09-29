@@ -1,10 +1,12 @@
 require('app-module-path').addPath(__dirname)
 const app = require('app')
 const logger = require('utils/logger')
-const { server } = require('utils/environment')
+const environment = require('utils/environment')
 
-const { port } = server
+const { port } = environment.server
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   logger.info(`Server up and listening on port ${port}`, { scope: 'SERVER' })
 })
+
+module.exports = server

@@ -2,13 +2,14 @@
   "name": "intrmodl-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "NODE_ENV=development nodemon src/index.js",
+    "start": "node src/server.js",
+    "dev": "NODE_ENV=development nodemon src/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=development mocha --recursive",
+    "test:watch": "NODE_ENV=development mocha --recursive --watch"
   },
   "keywords": [],
   "author": "",
@@ -23,9 +24,12 @@
     "palin": "^2.2.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "nodemon": "^1.18.4"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   }
 }
