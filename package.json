@@ -15,9 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "app-module-path": "^2.2.0",
+    "bristol": "^0.4.0",
     "joi": "^13.7.0",
     "koa": "^2.5.3",
-    "koa-body": "^4.0.4"
+    "koa-body": "^4.0.4",
+    "palin": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^5.6.1",

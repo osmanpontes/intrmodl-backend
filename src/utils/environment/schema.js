@@ -6,4 +6,12 @@ module.exports = Joi.object().keys({
       .min(1024).max(65535)
       .required(),
   }).required(),
+  logger: Joi.object().keys({
+    formatter: Joi.string().valid([
+      'palin',
+      'human',
+      'syslog',
+      'commonInfoModel',
+    ]).required(),
+  }).required(),
 }).required()

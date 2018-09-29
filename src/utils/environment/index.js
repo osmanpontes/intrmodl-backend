@@ -10,6 +10,9 @@ const environment = env.NODE_ENV === 'development'
     server: {
       port: env.SERVER_PORT,
     },
+    logger: {
+      formatter: env.LOGGER_FORMATTER,
+    },
   }
 
 const { value, error } = Joi.validate(environment, schema)
