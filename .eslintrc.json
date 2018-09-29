@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "src"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "semi": ["error", "never"]
+  }
+}
