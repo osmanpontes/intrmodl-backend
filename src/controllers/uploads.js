@@ -1,9 +1,44 @@
 const fs = require('fs')
+const {
+  pipe,
+  prop,
+  last,
+} = require('ramda')
+const { Op } = require('sequelize')
 const readCsvStreamByChunk = require('utils/readCsvStreamByChunk')
 const environment = require('utils/environment')
 
 const show = async (ctx) => {
-  ctx.body = {}
+  const { id } = ctx.params
+  const { limit, cursor } = ctx.request.query
+  const upload = await ctx.db.upload.findById(id)
+
+  if (upload === null || upload.status !== 'written') {
+    ctx.status = 404
+    ctx.body = {}
+    return
+  }
+
+  const where = { upload_id: id }
+
+  if (cursor) {
+    where.line = { [Op.gt]: cursor }
+  }
+
+  const lines = await ctx.db.shift.findAll({
+    where,
+    limit,
+    order: [['line', 'ASC']],
+  })
+
+  ctx.body = {
+    name: upload.name,
+    lines,
+    cursor: lines.length === 0 ? null : pipe(
+      last,
+      prop('line'),
+    )(lines),
+  }
 }
 
 const create = async (ctx) => {

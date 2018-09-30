@@ -4,7 +4,7 @@ const controller = require('../controllers/uploads')
 const router = new Router()
 
 router
-  .get('/', controller.show)
+  .get('/:id', controller.show)
   .post('/', controller.create)
 
 module.exports = router
