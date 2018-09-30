@@ -2,8 +2,8 @@ const Joi = require('joi')
 
 const validateCsvHeader = (header) => {
   const schema = Joi.object().keys({
-    yard_code: Joi.string().valid('Yard Code').required(),
-    employee_code: Joi.string().valid('Employee Code').required(),
+    yard_id: Joi.string().valid('Yard Code').required(),
+    employee_id: Joi.string().valid('Employee Code').required(),
     clock_in: Joi.string().valid('Clock In').required(),
     clock_out: Joi.string().valid('Clock Out').required(),
   }).required()
@@ -29,8 +29,8 @@ const validateCsvHeader = (header) => {
 const validateCsvRow = (row, index) => {
   const dateSchema = Joi.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/)
   const schema = Joi.object().keys({
-    yard_code: Joi.string().required(),
-    employee_code: Joi.string().regex(/^\d+$/).required(),
+    yard_id: Joi.string().required(),
+    employee_id: Joi.string().regex(/^\d+$/).required(),
     clock_in: dateSchema.required(),
     clock_out: dateSchema.required(),
   }).required()

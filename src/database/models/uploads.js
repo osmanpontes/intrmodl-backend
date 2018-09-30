@@ -13,6 +13,10 @@ module.exports = {
         type: STRING,
         allowNull: false,
       },
+      status: {
+        type: STRING,
+        allowNull: false,
+      },
       created_at: {
         type: DATE,
         allowNull: false,

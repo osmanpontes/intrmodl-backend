@@ -2,11 +2,11 @@ const csv = require('fast-csv')
 
 const validateCsv = require('./validateCsv')
 
-const readCsvStream = async (readableStream, onValidData) => {
+const readCsvStream = async ({ readableStream, onValidData, onEnd }) => {
   const writer = csv.fromStream(readableStream, {
     headers: [
-      'yard_code',
-      'employee_code',
+      'yard_id',
+      'employee_id',
       'clock_in',
       'clock_out',
     ],
@@ -25,9 +25,14 @@ const readCsvStream = async (readableStream, onValidData) => {
         }
         return isValid
       })
-      .on('data', onValidData)
+      .on('data', (data) => {
+        if (index !== 1) {
+          onValidData(data)
+        }
+      })
       .on('error', reject)
       .on('end', () => {
+        onEnd()
         resolve({ errors })
       })
   })

@@ -6,12 +6,13 @@
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres",
-    "logging": false
+    "logging": true
   },
   "server": {
     "port": 3000
   },
   "logger": {
     "formatter": "palin"
-  }
+  },
+  "chunkSize": 4
 }

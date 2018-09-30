@@ -1,5 +1,5 @@
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.addIndex('shifts', {
       fields: ['upload_id'],
       unique: false,

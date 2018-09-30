@@ -22,6 +22,7 @@ const environment = env.NODE_ENV === 'development'
       dialect: env.DB_DIALECT,
       logging: env.DB_LOGGING,
     },
+    chunkSize: env.CHUNK_SIZE,
   }
 
 const { value, error } = Joi.validate(environment, schema)

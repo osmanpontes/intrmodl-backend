@@ -29,4 +29,5 @@ module.exports = Joi.object().keys({
     ]).required(),
     logging: Joi.boolean().required(),
   }).required(),
+  chunkSize: Joi.number().integer().min(1).required(),
 }).required()
