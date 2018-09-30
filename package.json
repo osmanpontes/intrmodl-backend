@@ -17,6 +17,7 @@
   "dependencies": {
     "app-module-path": "^2.2.0",
     "bristol": "^0.4.0",
+    "fast-csv": "^2.4.1",
     "joi": "^13.7.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
