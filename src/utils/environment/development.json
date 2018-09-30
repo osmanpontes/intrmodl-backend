@@ -1,4 +1,13 @@
 {
+  "database": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "intrmodl",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": false
+  },
   "server": {
     "port": 3000
   },

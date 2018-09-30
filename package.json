@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "NODE_ENV=development mocha --recursive",
-    "test:watch": "NODE_ENV=development mocha --recursive --watch"
+    "test:watch": "NODE_ENV=development mocha --recursive --watch",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +24,12 @@
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-router": "^7.4.0",
-    "palin": "^2.2.0"
+    "palin": "^2.2.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "ramda": "^0.25.0",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^4.1.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",

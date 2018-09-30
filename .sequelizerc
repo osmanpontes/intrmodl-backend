@@ -1,0 +1,10 @@
+const path = require('path')
+
+const databaseFolder = './src/database'
+
+module.exports = {
+  'config': path.resolve('./src/utils/environment', 'index.js'),
+  'env': 'database',
+  'migrations-path': path.resolve(databaseFolder, 'migrations'),
+  'models-path': path.resolve(databaseFolder, 'models')
+}
