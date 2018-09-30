@@ -9,8 +9,7 @@ const readCsvStreamByChunk = require('utils/readCsvStreamByChunk')
 const environment = require('utils/environment')
 
 const show = async (ctx) => {
-  const { id } = ctx.params
-  const { limit, cursor } = ctx.request.query
+  const { id, limit, cursor } = ctx.state.input
   const upload = await ctx.db.upload.findById(id)
 
   if (upload === null || upload.status !== 'written') {
@@ -42,7 +41,7 @@ const show = async (ctx) => {
 }
 
 const create = async (ctx) => {
-  const { file_name: name } = ctx.request.body
+  const { name } = ctx.request.body
   const { file } = ctx.request.files
   const readableStream = fs.createReadStream(file.path)
 
