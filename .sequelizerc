@@ -6,5 +6,6 @@ module.exports = {
   'config': path.resolve('./src/utils/environment', 'index.js'),
   'env': 'database',
   'migrations-path': path.resolve(databaseFolder, 'migrations'),
+  'seeders-path': path.resolve(databaseFolder, 'seeders'),
   'models-path': path.resolve(databaseFolder, 'models')
 }
