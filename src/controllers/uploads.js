@@ -7,6 +7,7 @@ const {
 const { Op } = require('sequelize')
 const readCsvStreamByChunk = require('utils/readCsvStreamByChunk')
 const environment = require('utils/environment')
+const internalServerError = require('errors/internalServerError')
 
 const show = async (ctx) => {
   const { id, limit, cursor } = ctx.state.input
@@ -46,13 +47,18 @@ const create = async (ctx) => {
   const readableStream = fs.createReadStream(file.path)
 
   const upload = await ctx.db.upload.create({ name, status: 'writing' })
+  let hasChunkError = false
 
   const onChunk = async (chunk, baseIndex) => {
-    ctx.db.shift.bulkCreate(chunk.map((row, index) => ({
-      ...row,
-      upload_id: upload.id,
-      line: index + baseIndex,
-    })))
+    try {
+      await ctx.db.shift.bulkCreate(chunk.map((row, index) => ({
+        ...row,
+        upload_id: upload.id,
+        line: index + baseIndex,
+      })))
+    } catch (err) {
+      hasChunkError = true
+    }
   }
 
   const { errors } = await readCsvStreamByChunk({
@@ -68,9 +74,14 @@ const create = async (ctx) => {
     return
   }
 
+  if (hasChunkError) {
+    await upload.update({ status: 'failed' })
+    Object.assign(ctx, internalServerError)
+    return
+  }
 
   await upload.update({ status: 'written' })
-  ctx.body = { name }
+  ctx.body = upload
 }
 
 module.exports = {
